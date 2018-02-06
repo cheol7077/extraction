@@ -11,12 +11,14 @@ HUMORUNIV_SELECTR = '#cnts'
 RULIWEB_SELECTOR = '#board_read > div > div.board_main > div.board_main_view > div.view_content'
 MLBPARK_SELECTOR = '#container > div.contents > div.left_cont > div.view_context'
 
+
 def getSoup(url):
     headered = req.Request(url, headers=header)
     html = req.urlopen(headered)
     soup = BeautifulSoup(html, 'lxml')
     
     return soup
+
 
 def c1(url):
     text = ''
@@ -32,6 +34,7 @@ def c1(url):
     
     return text
 
+
 def c2(url):
     text = ''
     soup = getSoup(url)
@@ -46,6 +49,7 @@ def c2(url):
     
     return text
 
+
 def c3(url):
     text = ''
     soup = getSoup(url)
@@ -59,6 +63,7 @@ def c3(url):
         text = ' '.join(text.split())
     
     return text
+
 
 def c4(url):
     text = ''
@@ -75,6 +80,7 @@ def c4(url):
         text = None
     
     return text
+
 
 def c5(url):
     text = ''

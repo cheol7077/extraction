@@ -1,9 +1,9 @@
 # -*- coding:utf-8 -*-
 import math
-import connDB
+import keywords.dbForKey
 import keywords.abbreviationFile
 
-db = connDB.connDB()
+db = keywords.dbForKey.connDB()
 af = keywords.abbreviationFile.abbreviationFile()
 
 
@@ -22,7 +22,7 @@ def wordCount():
                     word_total[word] += 1
     
     keys = sorted(word_total.items(), key=lambda x:x[1], reverse=True)
-
+    
     return keys
 
 
@@ -68,7 +68,7 @@ def getPy(np):
     return py_dic
 
 
-def getPxy(np, py_dic):
+def getPxy(np, px_dic, py_dic):
     pxy_dic = {}
    
     for day in py_dic:     
@@ -120,7 +120,7 @@ def getWordAvg(ixy_dic):
     return word_avg
 
 
-def getResultDic(ixy_dic):
+def getResultDic(ixy_dic, word_avg):
     result_dic = {}
     result_val = {}
     
@@ -133,10 +133,9 @@ def getResultDic(ixy_dic):
         result_dic[date] = result_val
         
     return result_dic
-        
-    
 
 
+'''
 if __name__ == '__main__':
     word_avg = {}
     result_dic = {}
@@ -155,3 +154,4 @@ if __name__ == '__main__':
         for word in result_dic[date]:
             if word[1] > 0:
                 print(word)
+'''

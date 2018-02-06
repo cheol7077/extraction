@@ -5,8 +5,9 @@ from time import ctime, sleep, time
 from multiprocessing import Pool, TimeoutError
 from konlpy.tag import Twitter
 
-sites =  ('fmkorea', 'ppomppu', 'humoruniv', 'ruliweb', 'mlbpark')
+sites = ('fmkorea', 'ppomppu', 'humoruniv', 'ruliweb', 'mlbpark')
 cid = {'fmkorea':'c1', 'ppomppu':'c2', 'humoruniv':'c3', 'ruliweb':'c4', 'mlbpark':'c5'}
+
 
 def noun(text):
     twitter = Twitter()
@@ -16,12 +17,13 @@ def noun(text):
     
     for i, word in enumerate(malist):
         if word[1] == 'Noun':
-            if i != len(malist)-1:
+            if i != len(malist) - 1:
                 result += word[0] + ' '
             else:
                 result += word[0]
     
     return result
+
 
 def extraction(site):
     start_time = time()
@@ -65,7 +67,7 @@ def keywords(cid):
                     deleteSuccess += 1
                 else:
                     deleteFail += 1
-        
+            
             sleep(1)
         except Exception as e:
             print(post)
@@ -83,13 +85,14 @@ def keywords(cid):
     print('total: {} cases'.format(total))
     print('=================================')
 
+
 if __name__ == "__main__":
-    with Pool(processes = len(sites)) as process:
+    with Pool(processes=len(sites)) as process:
         fsites = [process.apply_async(extraction, (site,)) for site in sites]
-    
+        
         for fsite in fsites:
             try:
-                print('finish ' +fsite.get(timeout=7200)+ ' : ', ctime())
+                print('finish ' + fsite.get(timeout=7200) + ' : ', ctime())
             except TimeoutError:
                 print ('Failed at:', fsite.get())
                 continue

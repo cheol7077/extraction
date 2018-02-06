@@ -34,7 +34,7 @@ def wordLearing(cur, date):
 if __name__ == '__main__':
     conn = connect()
     cur = conn.cursor()
-    date = '2018-02-01'
+    date = '2018-01-31'
     
     wordLearing(cur, date)
     

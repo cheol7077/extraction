@@ -1,20 +1,23 @@
 # -*- coding:utf-8 -*-
 import pymysql
 import traceback
-class connDB:    
+
+
+class connDB:
+
     def __init__(self):    
         self.conn = pymysql.connect(host='localhost',
-                user = 'root',
-                password = 'hubhub',
+                user='root',
+                password='hubhub',
                 db='community',
                 charset='utf8mb4')
         self.cursor = self.conn.cursor()
-        
-    def __del__(self): #객체 소멸시 하는일
+    
+    def __del__(self):  # 객체 소멸시 하는일
         self.cursor.close()
         self.conn.close()
         print('DB connection is closed')
-
+    
     def selectBoard (self, value):
         try:
             with self.conn.cursor() as cursor:
@@ -47,5 +50,5 @@ class connDB:
         except :
             print('update err: ')
             traceback.print_exc()
-            result = None            
+            result = None
         return result
